@@ -1,0 +1,15 @@
+{
+  "name": "Search & Destroy",
+  "version": "0.0.1",
+  "description": "LOL!",
+  "homepage_url": "http://google.com",
+  "options_page": "html/options.html",
+  "background_page": "html/background.html",
+  "update_url": "http://google.com",
+  "permissions": ["experimental", "tabs", "<all_urls>"],
+  "page_action": {
+    "default_title": "Check check it",
+    "default_popup": "html/popup.html",
+    "default_icon": "images/action_default.png"
+  }
+}
