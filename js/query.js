@@ -1,7 +1,7 @@
 var Query = new function QueryStore () {
 
   var queryKey  = 'Query:',
-      urlKey    = 'URL:';
+      urlKey    = 'Url:';
 
 
   this.set = function (query, url) {
@@ -23,14 +23,14 @@ var Query = new function QueryStore () {
 
   this.getByQuery = function (query) {
 
-    localStorage[queryKey + query];
+    return localStorage[queryKey + query];
 
   };
 
 
   this.getByUrl = function (url) {
 
-    localStorage[urlKey + url];
+    return localStorage[urlKey + url];
 
   };
 
