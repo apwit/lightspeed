@@ -1,7 +1,7 @@
 {
-  "name": "Search & Destroy",
+  "name": "Lightspeed",
   "version": "0.0.1",
-  "description": "LOL!",
+  "description": "Move faster",
   "homepage_url": "http://google.com",
   "options_page": "html/options.html",
   "background_page": "html/background.html",
