@@ -5,7 +5,7 @@ chrome.tabs.getSelected(null, function (tab) {
 
   currentTab = tab;
 
-  chrome.extension.sendRequest({method: "getQueryForTab", arguments: [tab.id, tab.url]}, j(function (response) {
+  chrome.extension.sendRequest({ method: "getQueryForTab", arguments: [tab.id, tab.url] }, j(function (response) {
 
     $('#query').val(response);
     saveQuery();
@@ -43,6 +43,8 @@ function saveQuery (callback) {
   var query = $('#query').val();
   callback = typeof callback == "function" ? callback : function () {};
 
-  chrome.extension.sendRequest({method: "saveQuery", arguments: [query, currentTab.url]}, callback);
+  chrome.extension.sendRequest({ method: "saveQuery", arguments: [query, currentTab.url] }, callback);
+
+  chrome.pageAction.setIcon({ tabId: currentTab.id, path: '/images/action_saved.png' });
 
 }

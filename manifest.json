@@ -9,7 +9,6 @@
   "permissions": ["experimental", "tabs", "<all_urls>"],
   "page_action": {
     "default_title": "Check check it",
-    "default_popup": "html/popup.html",
-    "default_icon": "images/action_default.png"
+    "default_popup": "html/popup.html"
   }
 }

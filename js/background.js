@@ -24,9 +24,17 @@ chrome.experimental.webNavigation.onBeforeNavigate.addListener(function(details)
 });
 
 
-chrome.tabs.onUpdated.addListener(function (tabId, info) {
+chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
 
-  if (info.status == "loading") chrome.pageAction.show(tabId);
+  if (info.status == "loading") {
+
+    var storedQuery = Query.getByUrl(tab.url);
+    var iconType = storedQuery ? 'saved' : 'none';
+    chrome.pageAction.setIcon({ tabId: tabId, path: '/images/action_' + iconType + '.png' });
+
+    chrome.pageAction.show(tabId);
+
+  }
 
 });
 
@@ -58,15 +66,15 @@ function queryForUrl(url) {
 // Returns the saved query for the URL given if one exists, otherwise will try
 // to formulate a recommended key
 function getQueryForTab (tabId, url) {
-  console.log(url);
+
   var storedQuery = Query.getByUrl(url);
-  console.log(tabId);
+
   if (storedQuery) {
-console.log(storedQuery);
+
     return storedQuery;
 
   } else {
-console.log('no stored');
+
     var url = Backstack.getSearchUrlByTabId(tabId);
     return url ? queryForUrl(url) : undefined;
 
@@ -78,6 +86,5 @@ console.log('no stored');
 function saveQuery (query, url) {
 
   Query.set(query, url);
-  console.log(localStorage);
 
 }
