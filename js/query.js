@@ -1,4 +1,4 @@
-var Query = new function QueryStore () {
+var Query = new function Query () {
 
   var queryKey  = 'Query:',
       urlKey    = 'Url:';
