@@ -1,11 +1,3 @@
-function isSearch (details) {
-
-  return isSearchUrl(details.url)
-         && details.frameId == 0;
-
-}
-
-
 function isSearchUrl (url) {
 
   return url.indexOf('http://www.google.com/search') == 0;
