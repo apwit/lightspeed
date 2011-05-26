@@ -28,7 +28,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
 
   if (info.status == "loading") {
 
-    var storedQuery = Query.getByUrl(tab.url);
+    var storedQuery = Query.reverseLookup(tab.url);
     var iconType = storedQuery ? 'saved' : 'none';
     chrome.pageAction.setIcon({ tabId: tabId, path: '/images/action_' + iconType + '.png' });
 
@@ -67,7 +67,7 @@ function queryForUrl(url) {
 // to formulate a recommended key
 function getQueryForTab (tabId, url) {
 
-  var storedQuery = Query.getByUrl(url);
+  var storedQuery = Query.reverseLookup(url);
 
   if (storedQuery) {
 
