@@ -1,4 +1,4 @@
-var Query = new function QueryStore () {
+var Query = new function Query () {
 
   var queryKey  = 'Query:',
       urlKey    = 'Url:';
@@ -21,14 +21,14 @@ var Query = new function QueryStore () {
 
   };
 
-  this.getByQuery = function (query) {
+  this.lookup = function (query) {
 
     return localStorage[queryKey + query];
 
   };
 
 
-  this.getByUrl = function (url) {
+  this.reverseLookup = function (url) {
 
     return localStorage[urlKey + url];
 
@@ -37,7 +37,7 @@ var Query = new function QueryStore () {
 
   this.removeByQuery = function (query) {
 
-    var url = getByQuery(query);
+    var url = lookup(query);
     delete localStorage[queryKey + query];
     delete localStorage[urlKey + url];
 
@@ -46,7 +46,7 @@ var Query = new function QueryStore () {
 
   this.removeByUrl = function (url) {
 
-    var query = getByUrl(url);
+    var query = reverseLookup(url);
     delete localStorage[urlKey + url];
     delete localStorage[queryKey + query];
 

@@ -1,34 +1,34 @@
 Backstack.record();
 
-// Fires when a page is navigated to
-// We use this instead of tabs.onUpdated because it fires faster
-chrome.experimental.webNavigation.onBeforeNavigate.addListener(function(details) {
+chrome.experimental.webRequest.onBeforeRequest.addListener(function(details) {
 
-  var url = details.url;
+  var queryUrl    = details.url,
+      query       = queryForUrl(queryUrl),
+      redirectUrl = Query.lookup(query);
 
-  if (isSearch(details)) {
+  if (redirectUrl) {
 
-    var query = queryForUrl(url),
-        url   = localStorage['Query:' + query];
+    return {
 
-    if (url) {
+      redirectUrl: redirectUrl
 
-      chrome.tabs.executeScript(details.tabId, {
-        code: 'location.href = "' + url + '";'
-      });
-
-    }
+    };
 
   }
 
-});
+}, {
+
+  urls: ["*://*.google.com/search*"],
+  types: ["main_frame"]
+
+}, ["blocking"]);
 
 
 chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
 
   if (info.status == "loading") {
 
-    var storedQuery = Query.getByUrl(tab.url);
+    var storedQuery = Query.reverseLookup(tab.url);
     var iconType = storedQuery ? 'saved' : 'none';
     chrome.pageAction.setIcon({ tabId: tabId, path: '/images/action_' + iconType + '.png' });
 
@@ -67,7 +67,7 @@ function queryForUrl(url) {
 // to formulate a recommended key
 function getQueryForTab (tabId, url) {
 
-  var storedQuery = Query.getByUrl(url);
+  var storedQuery = Query.reverseLookup(url);
 
   if (storedQuery) {
 
