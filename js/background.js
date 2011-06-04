@@ -6,15 +6,7 @@ chrome.experimental.webRequest.onBeforeRequest.addListener(function(details) {
       query       = queryForUrl(queryUrl),
       redirectUrl = Query.lookup(query);
 
-  if (redirectUrl) {
-
-    return {
-
-      redirectUrl: redirectUrl
-
-    };
-
-  }
+  if (redirectUrl) return { redirectUrl: redirectUrl };
 
 }, {
 
@@ -71,12 +63,14 @@ function getQueryForTab (tabId, url) {
 
   if (storedQuery) {
 
+    console.log("Stored query: " + storedQuery);
     return storedQuery;
 
   } else {
 
-    var url = Backstack.getSearchUrlByTabId(tabId);
-    return url ? queryForUrl(url) : undefined;
+    var searchUrl = Backstack.getSearchUrlByTabId(tabId);
+    console.log("Search URL: " + searchUrl);
+    return searchUrl ? queryForUrl(searchUrl) : undefined;
 
   }
 
@@ -84,7 +78,16 @@ function getQueryForTab (tabId, url) {
 
 
 function saveQuery (query, url) {
+  console.log("Saving query '" + query + "' for URL '" + url + "'");
 
-  Query.set(query, url);
+  if (query) Query.set(query, url);
+  else Query.reverseDestroy(url);
+
+}
+
+
+function destroyQuery (query) {
+
+  
 
 }

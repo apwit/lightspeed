@@ -1,7 +1,7 @@
-var Query = new function Query () {
+var Query = new function () {
 
-  var queryKey  = 'Query:',
-      urlKey    = 'Url:';
+  var QUERY_KEY  = 'Query:',
+      URL_KEY    = 'Url:';
 
 
   this.set = function (query, url) {
@@ -10,45 +10,89 @@ var Query = new function Query () {
     if (query == '' || url == '') return;
 
     // Check for existing values for this url/query
-    var oldUrl = localStorage[queryKey + query];
-    if (oldUrl) delete localStorage[urlKey + oldUrl];
-    var oldQuery = localStorage[urlKey + url];
-    if (oldQuery) delete localStorage[queryKey + oldQuery];
+    var oldUrl = this.lookup(query);
+    if (oldUrl) localStorage.removeItem(URL_KEY + oldUrl);
+    var oldQuery = this.reverseLookup(url);
+    if (oldQuery) localStorage.removeItem(QUERY_KEY + oldQuery);
 
     // Set the new values
-    localStorage[queryKey + query] = url;
-    localStorage[urlKey + url] = query;
+    localStorage[QUERY_KEY + query] = url;
+    localStorage[URL_KEY + url] = query;
 
   };
 
   this.lookup = function (query) {
 
-    return localStorage[queryKey + query];
+    return localStorage[QUERY_KEY + query];
 
   };
 
 
   this.reverseLookup = function (url) {
 
-    return localStorage[urlKey + url];
+    return localStorage[URL_KEY + url];
 
   };
 
 
-  this.removeByQuery = function (query) {
+  this.destroy = function (query) {
 
-    var url = lookup(query);
-    delete localStorage[queryKey + query];
-    delete localStorage[urlKey + url];
+    var url = this.lookup(query);
+    delete localStorage[QUERY_KEY + query];
+    delete localStorage[URL_KEY + url];
 
   };
 
 
-  this.removeByUrl = function (url) {
+  this.reverseDestroy = function (url) {
 
-    var query = reverseLookup(url);
-    delete localStorage[urlKey + url];
-    delete localStorage[queryKey + query];
+    var query = this.reverseLookup(url);
+    localStorage.removeItem(QUERY_KEY + query);
+    localStorage.removeItem(URL_KEY + url);
+
+  };
+
+
+  this.each = function (callback) {
+
+    var all       = this.all(),
+        lastIndex = all.length -1;
+
+    for (i = 0; i < lastIndex; i++) {
+
+      callback(all[i][0], all[i][1]);
+
+    }
+
+  };
+
+
+  this.all = function () {
+
+    var all = [];
+
+    // Iterate through all the keys in localStorage
+    for (var i = 0; i != localStorage.length - 1; i++) {
+
+      var key = localStorage.key(i);
+
+      // Skip any non-query keys
+      if (key.indexOf(QUERY_KEY) != 0) continue;
+
+      // Extract the actual query from the key
+      var query = key.slice(6),
+          url   = this.lookup(query);
+
+      all.push([query, url]);
+
+    }
+
+    // Sort by query alphabetically
+    return all.sort(function (a, b) {
+
+      return a[0] < b[0] ? -1 : 1;
+
+    });
 
   };
 

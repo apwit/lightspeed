@@ -1,5 +1,4 @@
-var currentTab,
-    oldValue;
+var currentTab;
 
 chrome.tabs.getSelected(null, function (tab) {
 
@@ -19,8 +18,7 @@ $(function () {
 
   $('#query_form').submit(queryFormSubmit);
 
-  var $query = $('#query');
-  $query.bind('keyup paste', saveQuery);
+  $('#query').bind('keyup paste', saveQuery);
 
 });
 
@@ -40,8 +38,10 @@ function queryFormSubmit () {
 
 function saveQuery (callback) {
 
-  var query = $('#query').val();
-  callback = typeof callback == "function" ? callback : function () {};
+  var query     = $('#query').val(),
+      callback  = typeof callback == "function" ? callback : function () {};
+
+  console.log(query);
 
   chrome.extension.sendRequest({ method: "saveQuery", arguments: [query, currentTab.url] }, callback);
 

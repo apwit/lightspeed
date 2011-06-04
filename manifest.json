@@ -6,7 +6,7 @@
   "options_page": "html/options.html",
   "background_page": "html/background.html",
   "update_url": "http://google.com",
-  "permissions": ["experimental", "tabs", "<all_urls>"],
+  "permissions": ["experimental", "tabs"],
   "page_action": {
     "default_title": "Check check it",
     "default_popup": "html/popup.html"

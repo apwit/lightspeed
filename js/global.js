@@ -5,7 +5,7 @@ function isSearchUrl (url) {
 }
 
 
-// Returns a DOM-ready wrapped callback for the callback passed
+// Returns a DOM-ready wrapped callback
 function j (callback) {
 
   return function () {
