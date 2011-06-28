@@ -8,8 +8,8 @@ Initially it was made as a way to skip Google when a search term always lands yo
 
 Lightspeed depends on experimental Chrome APIs, which you have to enable before you can install it. Follow the instructions below to install Lightspeed:
 
-1. Visit [chrome://flags](chrome://flags).
-2. Find and enable the "Experimental Extension APIs" feature.
+1. Visit chrome://flags
+2. Find and enable the "Experimental Extension APIs" feature
    ![Flags page](http://i.imgur.com/vP5xm.png)
 3. Download the latest version: [Lightspeed v0.1](#)
 4. Profit
