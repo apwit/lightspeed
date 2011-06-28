@@ -91,3 +91,10 @@ function destroyQuery (query) {
   
 
 }
+
+
+function allQueries () {
+
+  return Query.all();
+
+}

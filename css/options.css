@@ -1,0 +1,7 @@
+.not_editing {
+  background-color: red;
+}
+
+.editing {
+  background-color: blue;
+}

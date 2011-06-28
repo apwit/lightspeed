@@ -79,18 +79,20 @@ var Query = new function () {
       // Skip any non-query keys
       if (key.indexOf(QUERY_KEY) != 0) continue;
 
-      // Extract the actual query from the key
-      var query = key.slice(6),
-          url   = this.lookup(query);
+      // Extract the query from the key
+      var query = key.slice(6);
 
-      all.push([query, url]);
+      all.push({
+        query: query,
+        url:   this.lookup(query)
+      });
 
     }
 
     // Sort by query alphabetically
     return all.sort(function (a, b) {
 
-      return a[0] < b[0] ? -1 : 1;
+      return a.query < b.query ? -1 : 1;
 
     });
 
