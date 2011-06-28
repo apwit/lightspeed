@@ -1,14 +1,13 @@
 {
   "name": "Lightspeed",
-  "version": "0.0.1",
-  "description": "Move faster",
-  "homepage_url": "http://google.com",
+  "version": "0.1",
+  "description": "Lightspeed is an experimental Chrome extension which serves as an alternative to native bookmarking.",
+  "homepage_url": "http://github.com/apwit/lightspeed",
   "options_page": "html/options.html",
   "background_page": "html/background.html",
-  "update_url": "http://google.com",
   "permissions": ["experimental", "tabs"],
   "page_action": {
-    "default_title": "Check check it",
+    "default_title": "Bookmark this page with Lightspeed",
     "default_popup": "html/popup.html"
   },
   "icons": {
