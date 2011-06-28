@@ -22,4 +22,4 @@ Lightspeed depends on experimental Chrome APIs, which you have to enable before 
 
 ## License
 
-Do whatever you want
+Ruby on Rails is released under the MIT license.
