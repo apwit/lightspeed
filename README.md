@@ -15,7 +15,7 @@ Lightspeed watches your browsing history for each tab (all data is stored locall
 ## Caveats
 
 * Uses an experimental extension API
-* Doesn't intercept requests until after DNS resolution (I think) due to the API used, so crappy internet connections will yield crappy lightspeed results.
+* Doesn't intercept requests until after DNS resolution (I think) due to the API used, so crappy internet connections will yield latency.
 * Only supports one query per URL
 
 ## License
