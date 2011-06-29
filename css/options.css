@@ -85,20 +85,18 @@ input.wide {
 	border-color: transparent;
 	background: none;
 }
+.not_editing:hover td {
+	background-color: #f0f0f0;
+}
+.not_editing input[type=text]:hover,
+.not_editing input[type=password]:hover {
+	-webkit-box-shadow: none;
+}
 
 .editing td {
   /*background-color: blue;*/
 	background-color: #f0f0f0;
 }
-.not_editing:hover td {
-	background-color: #f0f0f0;
-}
-
-
-
-
-
-
 
 
 

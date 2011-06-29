@@ -77,9 +77,9 @@ textarea {
 	    rgb(235,235,235) 100%
 	);
 }
-/*input[type=text]:hover, input[type=password]:hover, textarea:hover {
+input[type=text]:hover, input[type=password]:hover, textarea:hover {
 	-webkit-box-shadow: rgba(100,235,244,0.5) 0 0 8px;
-}*/
+}
 input[type=text]:focus, input[type=password]:focus, textarea:focus {
 	border-color: rgba(73,163,169,1);
 	-webkit-box-shadow: rgba(100,235,244,1) 0 0 8px;
