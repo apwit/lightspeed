@@ -45,6 +45,7 @@ function saveQuery (callback) {
 
   chrome.extension.sendRequest({ method: "saveQuery", arguments: [query, currentTab.url] }, callback);
 
-  chrome.pageAction.setIcon({ tabId: currentTab.id, path: '/images/action_saved.png' });
+  var iconPath = query ? '/images/action_saved.png' : '/images/action_none.png';
+  chrome.pageAction.setIcon({ tabId: currentTab.id, path: iconPath });
 
 }
