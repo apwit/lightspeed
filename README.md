@@ -1,8 +1,8 @@
 # Lightspeed
 
-Lightspeed is an experimental Chrome extension which serves as an alternative to native bookmarking. Rather than maintaining folders of bookmarks, you simply bookmark pages with a keyword which can be triggered from the Omnibar.
+Lightspeed is an experimental Chrome extension which serves as an alternative to native bookmarking. Rather than maintaining folders of bookmarks, you simply catalog pages with a query which is triggered from the Omnibar.
 
-Initially it was made as a way to skip Google when a search term always lands you on the same page. Simply search for something that you search for often, navigate to the page you'd like that search to go to and click the lightning bolt in the Omnibar. Next time you make that search, Lightspeed will take you directly to the page you set up.
+Lightspeed watches your browsing history for each tab (all data is stored locally, we don't use any of it) and automatically extracts queries for tabs that navigated through Google at some point. This means if you search for "cats" and land on a cat adoption page, clicking the lightspeed icon will use the query "cats" by default.
 
 ## Installation
 
@@ -15,8 +15,8 @@ Initially it was made as a way to skip Google when a search term always lands yo
 ## Caveats
 
 * Uses an experimental extension API
-* Doesn't intercept requests until after DNS resolution (I think) due to a bug in the API, so crappy internet connections will yield crappy lightspeed results.
-* Only supports one keyword per URL
+* Doesn't intercept requests until after DNS resolution (I think) due to the API used, so crappy internet connections will yield latency.
+* Only supports one query per URL
 
 ## License
 
