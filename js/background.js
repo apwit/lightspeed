@@ -80,7 +80,8 @@ function getQueryForTab (tabId, url) {
 function saveQuery (query, url) {
   console.log("Saving query '" + query + "' for URL '" + url + "'");
 
-  if (query) Query.set(query, url);
+  if (query && url) Query.set(query, url);
+  else if (query) Query.destroy(query);
   else Query.reverseDestroy(url);
 
 }

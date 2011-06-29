@@ -38,8 +38,8 @@ var Query = new function () {
   this.destroy = function (query) {
 
     var url = this.lookup(query);
-    delete localStorage[QUERY_KEY + query];
-    delete localStorage[URL_KEY + url];
+    localStorage.removeItem(QUERY_KEY + query);
+    localStorage.removeItem(URL_KEY + url);
 
   };
 
